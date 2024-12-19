@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Games - GameSwap Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7b3dff;
+            --secondary-color: #1a1a4a;
+            --background-color: #0a0a2a;
+            --text-color: #ffffff;
+            --text-muted: #b8b8b8;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .profile-link {
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-link:hover {
+            background-color: #6a2eff;
+        }
+
+        main {
+            padding: 40px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .game-info {
+            padding: 15px;
+        }
+
+        .game-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .game-price {
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-buy {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .btn-buy:hover {
+            background-color: #6a2eff;
+        }
+
+        .btn-cart {
+            background-color: var(--text-color);
+            color: var(--background-color);
+        }
+
+        .btn-cart:hover {
+            background-color: #e0e0e0;
+        }
+
+        .btn-wishlist {
+            background-color: #4a90e2;
+            color: var(--text-color);
+        }
+
+        .btn-wishlist:hover {
+            background-color: #3a7bc8;
+        }
+
+        #cart-count {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">GameSwap</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="buy.html">Marketplace</a>
+
+                <a href="about_us.html">About</a>
+                <a href="profile.html" class="profile-link" id="profileLink">Profile</a>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Buy Games</h1>
+            <div class="games-grid">
+                <div class="game-card">
+                    <img src="photos/cyberpunk.jpg" alt="Cyberpunk 2077" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Cyberpunk 2077</div>
+                        <div class="game-price">$59.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Cyberpunk 2077', 59.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Cyberpunk 2077', 59.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/legendofz.jpg" alt="The Legend of Zelda: Breath of the Wild" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">The Legend of Zelda: Breath of the Wild</div>
+                        <div class="game-price">$59.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('The Legend of Zelda: Breath of the Wild', 59.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('The Legend of Zelda: Breath of the Wild', 59.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/rdr2.jpg" alt="Red Dead Redemption 2" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Red Dead Redemption 2</div>
+                        <div class="game-price">$49.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Red Dead Redemption 2', 49.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Red Dead Redemption 2', 49.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/gow.jpg" alt="God of War" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">God of War</div>
+                        <div class="game-price">$39.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('God of War', 39.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('God of War', 39.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/animal.jpg" alt="Animal Crossing: New Horizons" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Animal Crossing: New Horizons</div>
+                        <div class="game-price">$54.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Animal Crossing: New Horizons', 54.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Animal Crossing: New Horizons', 54.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/elsenring.jpg" alt="Elden Ring" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Elden Ring</div>
+                        <div class="game-price">$59.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Elden Ring', 59.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Elden Ring', 59.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/minecraft.jpg" alt="Minecraft" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Minecraft</div>
+                        <div class="game-price">$26.95</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Minecraft', 26.95)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Minecraft', 26.95)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/fifa.jpg" alt="FIFA 23" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">FIFA 23</div>
+                        <div class="game-price">$59.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('FIFA 23', 59.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('FIFA 23', 59.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/hades.jpg" alt="Hades" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Hades</div>
+                        <div class="game-price">$24.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Hades', 24.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Hades', 24.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/stardew.jpg" alt="Stardew Valley" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Stardew Valley</div>
+                        <div class="game-price">$14.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Stardew Valley', 14.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Stardew Valley', 14.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/hollow.jpg" alt="Hollow Knight" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Hollow Knight</div>
+                        <div class="game-price">$14.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Hollow Knight', 14.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Hollow Knight', 14.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <img src="photos/amongus.jpg" alt="Among Us" class="game-image">
+                    <div class="game-info">
+                        <div class="game-title">Among Us</div>
+                        <div class="game-price">$4.99</div>
+                        <div class="button-group">
+                            <button class="btn btn-buy">Buy Now</button>
+                            <button class="btn btn-cart" onclick="addToCart('Among Us', 4.99)">Add to Cart</button>
+                            <button class="btn btn-wishlist" onclick="addToWishlist('Among Us', 4.99)">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 GameSwap Marketplace. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const username = localStorage.getItem('username');
+            const profileLink = document.getElementById('profileLink');
+            if (username && profileLink) {
+                profileLink.textContent = `Welcome, ${username}`;
+            }
+        });
+
+        // Simple cart functionality
+        let cart = [];
+
+        function addToCart(gameName, price) {
+            cart.push({ name: gameName, price: price });
+            updateCartCount();
+            alert(`${gameName} added to cart!`);
+        }
+
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            if (cartCount) {
+                cartCount.textContent = cart.length;
+            } else {
+                const profileLink = document.querySelector('.profile-link');
+                const span = document.createElement('span');
+                span.id = 'cart-count';
+                span.textContent = cart.length;
+                profileLink.style.position = 'relative';
+                profileLink.appendChild(span);
+            }
+        }
+
+        function addToWishlist(gameName, price) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            if (!wishlist.some(game => game.name === gameName)) {
+                wishlist.push({ name: gameName, price: price });
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                alert(`${gameName} added to wishlist!`);
+            } else {
+                alert(`${gameName} is already in your wishlist!`);
+            }
+        }
+    </script>
+</body>
+</html>
+```[v0-no-op-code-block-prefix]
+
+Finally, let's update the `index.html` file to ensure the profile link is correct:
+
+```html type="html" project="undefined" file="index.html"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSwap Marketplace</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0a0a2a;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #7b3dff;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .profile-link {
+            background-color: #7b3dff;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .hero {
+            text-align: center;
+            margin: 50px 0;
+        }
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #b8b8b8;
+            margin-bottom: 30px;
+        }
+        .hero img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #7b3dff;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .about {
+            text-align: center;
+            background-color: #1a1a4a;
+            padding: 50px 20px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        .about h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .about p {
+            font-size: 16px;
+            color: #b8b8b8;
+            margin-bottom: 20px;
+        }
+        .about img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+        }
+        .feature {
+            flex-basis: 30%;
+            background-color: #1a1a4a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .feature img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .feature h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .feature p {
+            color: #b8b8b8;
+        }
+        .testimonial {
+            background-color: #1a1a4a;
+            padding: 40px 20px;
+            margin-bottom: 50px;
+            border-radius: 10px;
+        }
+        .testimonial h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .testimonial p {
+            font-size: 16px;
+            color: #b8b8b8;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+            }
+            .feature {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+
+</html>
+<!-- Add this modal HTML at the end of the body tag but before the closing </body> -->
+<div id="paymentModal" class="payment-modal">
+    <div class="payment-modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="payment-container">
+            <div class="payment-left">
+                <h2>Collect your first NFT</h2>
+                <form id="paymentForm" class="payment-form">
+                    <div class="form-group">
+                        <label for="cardName">Name on card</label>
+                        <input type="text" id="cardName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Card number</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9101 1121" maxlength="19" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="expDate">Expiration</label>
+                            <input type="text" id="expDate" placeholder="MM/YYYY" maxlength="7" required>
+                        </div>
+                        <div class="form-group half">
+                            <label for="cvv">CVV code</label>
+                            <input type="password" id="cvv" placeholder="•••" maxlength="3" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="payment-submit">Complete Purchase</button>
+                </form>
+            </div>
+            <div class="payment-right">
+                <div class="card-preview">
+                    <div class="card-front">
+                        <div class="card-bank">BANK OF CRYSTAL</div>
+                        <div class="card-number" id="previewCardNumber">---- ---- ---- ----</div>
+                        <div class="card-info">
+                            <div class="card-valid">
+                                <span>VALID THRU</span>
+                                <span id="previewExpDate">mm/dd</span>
+                            </div>
+                            <div class="card-name" id="previewCardName">ABC XYZ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+.payment-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.payment-modal-content {
+    position: relative;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.payment-container {
+    display: flex;
+    gap: 40px;
+}
+
+.payment-left {
+    flex: 1;
+}
+
+.payment-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-form {
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.half {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    background: white;
+}
+
+.payment-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.payment-submit:hover {
+    background: #6a2eff;
+}
+
+.card-preview {
+    width: 400px;
+    height: 250px;
+    perspective: 1000px;
+}
+
+.card-front {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #00a1ff, #7b3dff);
+    border-radius: 20px;
+    padding: 25px;
+    color: white;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-bank {
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.card-number {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.card-valid {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-valid span:first-child {
+    font-size: 10px;
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .payment-container {
+        flex-direction: column;
+    }
+
+    .card-preview {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+</style>
+
+<!-- Add this JavaScript before the closing body tag -->
+<script>
+// Update the existing addToCart function and add new payment-related functions
+function showPaymentModal(gameName, price) {
+    const modal = document.getElementById('paymentModal');
+    modal.style.display = 'block';
+
+    // Store the game details for the purchase
+    modal.dataset.gameName = gameName;
+    modal.dataset.price = price;
+}
+
+// Update the buy buttons to show payment modal
+document.querySelectorAll('.btn-buy').forEach(button => {
+    button.onclick = function() {
+        const gameCard = this.closest('.game-card');
+        const gameName = gameCard.querySelector('.game-title').textContent;
+        const price = gameCard.querySelector('.game-price').textContent.replace('$', '');
+        showPaymentModal(gameName, price);
+    };
+});
+
+// Close modal when clicking the close button or outside the modal
+document.querySelector('.close-modal').onclick = function() {
+    document.getElementById('paymentModal').style.display = 'none';
+};
+
+window.onclick = function(event) {
+    const modal = document.getElementById('paymentModal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+};
+
+// Card preview updates
+document.getElementById('cardName').addEventListener('input', function(e) {
+    document.getElementById('previewCardName').textContent = e.target.value.toUpperCase() || 'YULIIA ILEVYCH';
+});
+
+document.getElementById('cardNumber').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\s/g, '');
+    if (value.length > 16) value = value.substr(0, 16);
+
+    // Add spaces every 4 characters
+    value = value.replace(/(\d{4})/g, '$1 ').trim();
+    e.target.value = value;
+
+    document.getElementById('previewCardNumber').textContent = value || '1234 5678 9101 1121';
+});
+
+document.getElementById('expDate').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+
+    if (value.length >= 2) {
+        value = value.substr(0, 2) + '/' + value.substr(2);
+    }
+
+    e.target.value = value;
+    document.getElementById('previewExpDate').textContent = value || '08/28';
+});
+
+// Form submission
+document.getElementById('paymentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const modal = document.getElementById('paymentModal');
+    const gameName = modal.dataset.gameName;
+    const price = modal.dataset.price;
+
+    // Simulate payment processing
+    alert(`Payment successful! You've purchased ${gameName} for $${price}`);
+    modal.style.display = 'none';
+
+    // Add to bought games in localStorage
+    let boughtGames = JSON.parse(localStorage.getItem('boughtGames')) || [];
+    boughtGames.push({
+        name: gameName,
+        price: parseFloat(price),
+        purchaseDate: new Date().toISOString()
+    });
+    localStorage.setItem('boughtGames', JSON.stringify(boughtGames));
+});
+</script>
+
+

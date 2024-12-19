@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GameSwap Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7b3dff;
+            --secondary-color: #1a1a4a;
+            --background-color: #0a0a2a;
+            --text-color: #ffffff;
+            --text-muted: #b8b8b8;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .profile-link {
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-link:hover {
+            background-color: #6a2eff;
+        }
+
+        main {
+            padding: 40px 0;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+        }
+
+        .about-section {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .about-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .team-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: var(--text-muted);
+            font-size: 20px;
+            margin: 0 5px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .team-section {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">GameSwap</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="buy.html">Marketplace</a>
+                <a href="about.html">About</a>
+                <a href="profile.html" class="profile-link" id="profileLink">Profile</a>
+            </nav>
+        </header>
+
+        <main>
+            <h1>About GameSwap</h1>
+
+            <section class="about-section">
+                <img src="gameswap.jpg" alt="GameSwap Team">
+                <h2>Our Mission</h2>
+                <p>At GameSwap, we're revolutionizing the gaming industry by creating a secure, transparent, and decentralized marketplace for buying, selling, and trading digital games using blockchain technology and NFTs.</p>
+                <p>Our mission is to empower gamers worldwide by giving them true ownership of their digital game libraries, fostering a vibrant community of collectors, and supporting game developers through a fair and innovative platform.</p>
+            </section>
+
+            <section class="about-section">
+                <h2>Our Story</h2>
+                <p>Founded in 2023 by a group of passionate gamers and blockchain enthusiasts, GameSwap was born out of the desire to solve the long-standing issues of digital game ownership and resale in the gaming industry.</p>
+                <p>We recognized that while the gaming world had largely moved to digital distribution, players were left without the ability to truly own, sell, or trade their digital games. By leveraging blockchain technology and NFTs, we've created a platform that brings the benefits of physical game ownership to the digital realm.</p>
+            </section>
+
+            <section class="about-section">
+                <h2>Why Choose GameSwap?</h2>
+                <ul>
+                    <li>True Ownership: Every game you purchase on GameSwap is represented by a unique NFT, giving you verifiable ownership of your digital games.</li>
+                    <li>Secure Transactions: Our blockchain-based platform ensures that all transactions are secure, transparent, and immutable.</li>
+                    <li>Fair Marketplace: Sellers can set their own prices, and buyers can find great deals on both new and pre-owned digital games.</li>
+                    <li>Support for Developers: We work closely with game developers to ensure they receive a fair share of secondary sales, creating a sustainable ecosystem for game creation.</li>
+                    <li>Community-Driven: GameSwap is more than just a marketplace; it's a community of gamers, collectors, and enthusiasts sharing their passion for gaming.</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 GameSwap Marketplace. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Check if user is logged in
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const username = localStorage.getItem('username');
+            const profileLink = document.getElementById('profileLink');
+            if (username && profileLink) {
+                profileLink.textContent = `Welcome, ${username}`;
+            }
+        });
+    </script>
+</body>
+</html>
