@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - GameSwap Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7b3dff;
+            --secondary-color: #1a1a4a;
+            --background-color: #0a0a2a;
+            --text-color: #ffffff;
+            --text-muted: #b8b8b8;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .profile-link {
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-link:hover {
+            background-color: #6a2eff;
+        }
+
+        main {
+            padding: 40px 0;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+        }
+
+        .profile-info {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .profile-info p {
+            margin: 10px 0;
+        }
+
+        .game-list {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .game-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--text-muted);
+        }
+
+        .game-item:last-child {
+            border-bottom: none;
+        }
+
+        .remove-btn {
+            background-color: #ff3d3d;
+            color: var(--text-color);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background-color: #ff1a1a;
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .game-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .remove-btn {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">GameSwap</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="buy.html">Marketplace</a>
+                <a href="about_us.html">About</a>
+                <a href="profile.html" class="profile-link" id="profileLink">Profile</a>
+            </nav>
+        </header>
+
+        <main>
+            <h1>User Profile</h1>
+            <div class="profile-info">
+                <h2>Personal Information</h2>
+                <p><strong>Username:</strong> <span id="username"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>Credit:</strong> $<span id="credit"></span></p>
+            </div>
+
+            <div class="game-list">
+                <h2>Games Bought</h2>
+                <div id="bought-games"></div>
+            </div>
+
+            <div class="game-list">
+                <h2>Games Sold</h2>
+                <div id="sold-games"></div>
+            </div>
+
+            <div class="game-list">
+                <h2>Wishlist</h2>
+                <div id="wishlist"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 GameSwap Marketplace. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simulated user data (in a real app, this would come from a server)
+        const userData = {
+            username: "GameMaster123",
+            email: "gamemaster123@example.com",
+            credit: 500.00,
+            boughtGames: [
+                { name: "Cyberpunk 2077", price: 59.99 },
+                { name: "The Legend of Zelda: Breath of the Wild", price: 59.99 },
+                { name: "Red Dead Redemption 2", price: 49.99 }
+            ],
+            soldGames: [
+                { name: "Minecraft", price: 26.95 },
+                { name: "Among Us", price: 4.99 }
+            ]
+        };
+
+        // Populate user information
+        document.getElementById('username').textContent = userData.username;
+        document.getElementById('email').textContent = userData.email;
+        document.getElementById('credit').textContent = userData.credit.toFixed(2);
+
+        // Populate bought games
+        const boughtGamesContainer = document.getElementById('bought-games');
+        userData.boughtGames.forEach(game => {
+            const gameItem = document.createElement('div');
+            gameItem.className = 'game-item';
+            gameItem.innerHTML = `
+                <span>${game.name}</span>
+                <span>$${game.price.toFixed(2)}</span>
+            `;
+            boughtGamesContainer.appendChild(gameItem);
+        });
+
+        // Populate sold games
+        const soldGamesContainer = document.getElementById('sold-games');
+        userData.soldGames.forEach(game => {
+            const gameItem = document.createElement('div');
+            gameItem.className = 'game-item';
+            gameItem.innerHTML = `
+                <span>${game.name}</span>
+                <span>$${game.price.toFixed(2)}</span>
+            `;
+            soldGamesContainer.appendChild(gameItem);
+        });
+
+        // Populate wishlist
+        function updateWishlist() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistContainer = document.getElementById('wishlist');
+            wishlistContainer.innerHTML = '';
+
+            wishlist.forEach(game => {
+                const gameItem = document.createElement('div');
+                gameItem.className = 'game-item';
+                gameItem.innerHTML = `
+                    <span>${game.name}</span>
+                    <span>$${game.price.toFixed(2)}</span>
+                    <button class="remove-btn" onclick="removeFromWishlist('${game.name}')">Remove</button>
+                `;
+                wishlistContainer.appendChild(gameItem);
+            });
+        }
+
+        function removeFromWishlist(gameName) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist = wishlist.filter(game => game.name !== gameName);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateWishlist();
+        }
+
+        updateWishlist();
+    </script>
+</body>
+</html>
