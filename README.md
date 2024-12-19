@@ -1,8 +1,8 @@
-##GameSwap: Decentralized Marketplace for Reselling Digital Games
+## GameSwap: Decentralized Marketplace for Reselling Digital Games
 #Introduction
 GameSwap revolutionizes digital game ownership by enabling players to securely and transparently resell their purchased games without sharing personal accounts or identity. Leveraging blockchain technology, GameSwap creates a sustainable and decentralized gaming ecosystem where players can trade their digital assets seamlessly while respecting the rights of game developers through royalties.
 
-#Features
+# Features
 1. Decentralized Game Ownership
 Each purchased game is represented as a Non-Fungible Token (NFT) tied to encrypted game files stored on a decentralized network.
 
@@ -18,7 +18,7 @@ Transactions are pseudonymous, and optional decentralized identity (DID) integra
 5. Interoperability
 Built on Ethereum or Polygon for lower fees and faster transactions, the platform supports seamless integration with wallets like MetaMask.
 
-#Problem Statement
+# Problem Statement
 In traditional digital game marketplaces:
 
 1. Players cannot resell games due to restrictive licensing.
@@ -26,7 +26,7 @@ In traditional digital game marketplaces:
 3. Buyers face security risks when sharing accounts to transfer games.
 4. GameSwap addresses these problems by introducing a decentralized, NFT-based marketplace.
 
-#How It Works
+# How It Works
 1. Game Files as NFTs:
 Game files are uploaded and encrypted using decentralized storage platforms like IPFS or Arweave. Metadata and ownership are represented as ERC-721 or ERC-1155 tokens.
 
@@ -39,30 +39,28 @@ The buyer has complete control over the purchased NFT, including the ability to 
 4. Game Access:
 Upon purchase, the buyer receives decryption keys to access the game files securely.
 
-#Tech Stack
+# Tech Stack
 1. Blockchain: Ethereum, Polygon (for scalability and lower fees)
 2. Smart Contracts: Solidity, OpenZeppelin libraries
 3. NFT Standards: ERC-721, ERC-1155
 4. Storage: IPFS, Arweave for decentralized hosting of game files
-5. Frontend: React, Redux for a seamless user interface
-6. Backend: Node.js, Express, and MongoDB for user and transaction management
-7. Authentication: Decentralized Identity (DID) and Zero-Knowledge Proofs
-8. Wallets: MetaMask, Trust Wallet for secure transactions
-9. Payments: Stablecoins (USDC), ETH for marketplace transactions
-10. Testing: Truffle, Hardhat for contract testing and deployment
-11. APIs: Ethers.js, Web3.js for blockchain interaction
+5. Backend: Node.js
+6. Wallets: MetaMask
+7. Payments: Stablecoins (USDC), ETH for marketplace transactions
+8. Testing: Hardhat for contract testing and deployment
+9. APIs: Ethers.js
 
-#Benefits
+# Benefits
 1. For Players: Freedom to resell games, ensuring true ownership.
 2. For Developers: A consistent revenue stream through royalties on resales.
 3. For the Industry: Promotes a fair, transparent, and sustainable ecosystem.
 
-#Future Plans
+# Future Plans
 1. Expanding platform interoperability with additional blockchains.
 2. Introducing in-game assets as NFTs for further monetization.
 3. Gamifying the marketplace experience to reward user participation.
 
-#How to run the code
+# How to run the code
 We have tested it on local host, hence to run it locally, run npx handhat node in one terminal, and in other terminal do the following in contracts folder:
 1. To compile Smart Comtract:
    npx hardhat compile
