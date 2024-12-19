@@ -1,0 +1,82 @@
+PS C:\Users\Arpit\snake-game-nft\contracts> npx hardhat run scripts/deploy.js --network localhost
+>>
+Deploying contracts with the account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Nothing to compile
+SnakeGameNFT deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+PS C:\Users\Arpit\snake-game-nft\contracts> npx hardhat console --network localhost
+Welcome to Node.js v22.12.0.
+Type ".help" for more information.
+>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+>
+PS C:\Users\Arpit\snake-game-nft\contracts> npx hardhat run scripts/deploy.js --network localhost
+>>
+Deploying contracts with the account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Nothing to compile
+SnakeGameNFT deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+PS C:\Users\Arpit\snake-game-nft\contracts> npx hardhat console --network localhost
+Welcome to Node.js v22.12.0.
+Type ".help" for more information.
+> // Get the contract
+undefined
+> const SnakeGameNFT = await ethers.getContractFactory("SnakeGameNFT");
+t contract.mintGameNFT("https://example.com/nft-metadata");
+undefined
+> const contract = await SnakeGameNFT.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+undefined
+>
+> // Mint an NFT
+undefined
+> await
+Uncaught ReferenceError: await is not defined
+> // Check the total number of NFTs minted
+undefined
+> const total = await contract.tokenCounter();
+undefined
+> console.log("Total NFTs minted:", total.toString());
+>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+>
+PS C:\Users\Arpit\snake-game-nft\contracts> ^C
+PS C:\Users\Arpit\snake-game-nft\contracts> npx hardhat console --network localhost
+Welcome to Node.js v22.12.0.
+Type ".help" for more information.
+> const SnakeGameNFT = await ethers.getContractFactory("SnakeGameNFT");
+undefined
+> const contract = await 
+...
+... SnakeGameNFT.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3");
+undefined
+> await contract.mintGameNFT("https://example.com/nft-metadata");
+{
+  hash: '0xb859744e8c6fa6c829d8d16f55353689eab8161555090d2935538fbbc02889a9',
+  type: 2,
+  accessList: [],
+  blockHash: '0x91e4467fbd5266aa4f31c80d34082b64356c64ef710d6a351e6763884c91bdeb',
+  blockNumber: 2,
+  transactionIndex: 0,
+  confirmations: 1,
+  from: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
+  gasPrice: BigNumber { value: "993410902" },
+  maxPriorityFeePerGas: BigNumber { value: "232421875" },
+  maxFeePerGas: BigNumber { value: "993410902" },
+  gasLimit: BigNumber { value: "143700" },
+  to: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  value: BigNumber { value: "0" },
+  nonce: 1,
+  data: '0x04ed2e460000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002068747470733a2f2f6578616d706c652e636f6d2f6e66742d6d65746164617461',
+  r: '0xd3e6c77c21c2a8df71bacb2fd05581862e5198a827e4d534b4640b6a748b7a8e',
+  s: '0x2d300400b2aa4d4fcc9f87cc4285bf09bc383100b84426d22933a29a57c4c210',
+  v: 0,
+  creates: null,
+  chainId: 31337,
+  wait: [Function (anonymous)]
+}
+> const total = await contract.tokenCounter();
+undefined
+> const total = await contract.tokenCounter();
+Uncaught SyntaxError: Identifier 'total' has already been declared
+> console.log("Total NFTs minted:", total.toString());
+Total NFTs minted: 1
+undefined
+>
